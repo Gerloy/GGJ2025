@@ -1,14 +1,19 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://imgs/pj_prueba/der1.png" type="Texture" id=1]
 [ext_resource path="res://scripts/pj/movimiento.gd" type="Script" id=2]
 [ext_resource path="res://icon.png" type="Texture" id=3]
+[ext_resource path="res://scripts/pj/animaciones.gd" type="Script" id=4]
+[ext_resource path="res://imgs/pj_prueba/der2.png" type="Texture" id=5]
 
 [sub_resource type="PhysicsMaterial" id=4]
 rough = true
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 18, 24 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 20, 6.5 )
 
 [sub_resource type="PhysicsMaterial" id=5]
 friction = 0.2
@@ -17,25 +22,38 @@ absorbent = true
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 515, 10 )
 
-[node name="Node2D" type="Node2D"]
+[node name="root" type="Node2D"]
 
 [node name="player" type="RigidBody2D" parent="."]
 mode = 2
-mass = 2.0
+mass = 8.16327
 physics_material_override = SubResource( 4 )
+gravity_scale = 16.0
 script = ExtResource( 2 )
+animPath = NodePath("Sprite")
 
 [node name="Sprite" type="Sprite" parent="player"]
 position = Vector2( 24, 26 )
 scale = Vector2( 3, 3 )
 texture = ExtResource( 1 )
+script = ExtResource( 4 )
+rate = 0.25
+ani_caminar = [ ExtResource( 5 ), ExtResource( 1 ) ]
+spr_idle = ExtResource( 1 )
+spr_salta = ExtResource( 5 )
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="player"]
+[node name="hitbox" type="CollisionShape2D" parent="player"]
 position = Vector2( 21, 26 )
 shape = SubResource( 1 )
 
+[node name="checkeaPiso" type="Area2D" parent="player"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player/checkeaPiso"]
+position = Vector2( 21, 45.5 )
+shape = SubResource( 6 )
+
 [node name="piso" type="RigidBody2D" parent="."]
-position = Vector2( 512, 601 )
+position = Vector2( 512, 711 )
 mode = 3
 mass = 0.01
 physics_material_override = SubResource( 5 )
@@ -45,6 +63,9 @@ gravity_scale = -128.0
 shape = SubResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="piso"]
-position = Vector2( -2.49997, 0 )
-scale = Vector2( 16.0156, 1 )
+position = Vector2( -2.49997, 9.5 )
+scale = Vector2( 16.0156, 0.703125 )
 texture = ExtResource( 3 )
+
+[connection signal="body_entered" from="player/checkeaPiso" to="player" method="_on_checkeaPiso_body_entered"]
+[connection signal="body_exited" from="player/checkeaPiso" to="player" method="_on_checkeaPiso_body_exited"]

@@ -1,36 +1,66 @@
 extends RigidBody2D
 
+export var vel:float = 10000;
+export var fuerza_salto:float = 200;
+var estaEnElPiso = false;
+var salta = false;
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+export var animPath:NodePath;
+var anim;
 
-export var vel = 200;
+#onready var piso = $checkeaPiso;
+
 var actions = [
 	"mov_de",
-	"mov_iz"
+	"mov_iz",
+	"salto"
 	];
 
 var movx = 0;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	anim = get_node(animPath);
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	
-	#if Input.action
-	movx = (Input.get_action_strength(actions[0]) - Input.get_action_strength(actions[1])) * vel;
-	#add_force(Vector2(0,0), Vector2(movx,0));
-	#applied_force = Vector2(clamp(applied_force.x,0,100),applied_force.y);
-	#global_position.x = global_position.x ;
-	
+	salta = false;
+	movx = (Input.get_action_strength(actions[0]) - Input.get_action_strength(actions[1])) * vel * delta;
+
+	if (Input.is_action_pressed(actions[2]) && estaEnElPiso):
+		salta = true;
+
+	if estaEnElPiso:
+		if movx == 0:
+			anim.cambiarEstado(anim.Estado.IDLE);
+		elif movx < 0:
+			anim.cambiarEstado(anim.Estado.MOVIZ);
+		elif movx > 0:
+			anim.cambiarEstado(anim.Estado.MOVDE);
+	else:
+		anim.cambiarEstado(anim.Estado.SALTA);
+
 
 	pass
 
 func _integrate_forces(state):
 	rotation_degrees = 0;
 	state.linear_velocity.x = movx;
+	state.linear_velocity.y -= fuerza_salto if salta else 0;
 	pass
+
+func _on_checkeaPiso_body_entered(body:Node):
+	if (body.name == "piso"):
+		print("piso");
+		estaEnElPiso = true;
+		pass
+	pass # Replace with function body.
+
+func _on_checkeaPiso_body_exited(body:Node):
+	if (body.name == "piso"):
+		print("piso");
+		estaEnElPiso = false;
+		pass
+	pass # Replace with function body.
