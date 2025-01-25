@@ -52,6 +52,8 @@ shape = SubResource( 1 )
 position = Vector2( 21, 45.5 )
 shape = SubResource( 6 )
 
+[node name="Camera2D" type="Camera2D" parent="player"]
+
 [node name="piso" type="RigidBody2D" parent="."]
 position = Vector2( 512, 711 )
 mode = 3
