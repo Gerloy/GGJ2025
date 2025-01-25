@@ -18,7 +18,7 @@ position = Vector2( 591, 249 )
 scale = Vector2( 0.36, 0.36 )
 texture = ExtResource( 5 )
 script = ExtResource( 1 )
-scene = "res://Juego.tscn"
+scene = "res://Juego-fork.tscn"
 
 [node name="Sprite" type="Sprite" parent="jugar"]
 position = Vector2( -380.555, -2.77777 )

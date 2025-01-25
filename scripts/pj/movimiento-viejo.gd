@@ -1,5 +1,4 @@
-extends CollisionShape2D
-
+extends RigidBody2D
 
 export var vel:float = 10000;
 export var fuerza_salto:float = 200;
@@ -11,8 +10,6 @@ var anim;
 export var pisoPath:NodePath;
 var piso;
 
-var pj;
-
 var actions = [
 	"mov_de",
 	"mov_iz",
@@ -23,11 +20,12 @@ var movx = 0;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pj = get_parent();
-	anim = get_parent().get_node("Sprite");
+	anim = get_parent().get_node("Sprite");#$Sprite;
 	piso = get_node(pisoPath);
 	pass
 
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	salta = false;
 	movx = (Input.get_action_strength(actions[0]) - Input.get_action_strength(actions[1])) * vel * delta;
@@ -37,15 +35,21 @@ func _process(delta):
 
 	if estaEnElPiso:
 		if movx == 0:
-			pj.cambiarEstado(pj.Estado.IDLE);
+			anim.cambiarEstado(anim.Estado.IDLE);
 		elif movx < 0:
-			pj.cambiarEstado(pj.Estado.MOVIZ);
+			anim.cambiarEstado(anim.Estado.MOVIZ);
 		elif movx > 0:
-			pj.cambiarEstado(pj.Estado.MOVDE);
+			anim.cambiarEstado(anim.Estado.MOVDE);
 	else:
-		pj.cambiarEstado(pj.Estado.SALTA);
+		anim.cambiarEstado(anim.Estado.SALTA);
 
 
+	pass
+
+func _integrate_forces(state):
+	rotation_degrees = 0;
+	state.linear_velocity.x = movx;
+	state.linear_velocity.y -= fuerza_salto if salta else 0;
 	pass
 
 func _on_checkeaPiso_body_entered(body:Node):
