@@ -1,0 +1,49 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://scripts/menu/iniciar.gd" type="Script" id=1]
+[ext_resource path="res://scripts/menu/creditos.gd" type="Script" id=2]
+[ext_resource path="res://scripts/menu/salir.gd" type="Script" id=3]
+[ext_resource path="res://imgs/menu/salirboton.png" type="Texture" id=4]
+[ext_resource path="res://imgs/menu/inicioboton.png" type="Texture" id=5]
+[ext_resource path="res://imgs/menu/cabecitamichi.png" type="Texture" id=6]
+[ext_resource path="res://imgs/menu/creditosboton.png" type="Texture" id=7]
+[ext_resource path="res://scripts/menu/manager.gd" type="Script" id=8]
+
+[node name="Menu" type="Node2D"]
+script = ExtResource( 8 )
+botones_path = [ NodePath("jugar"), NodePath("creditos"), NodePath("salir") ]
+
+[node name="jugar" type="Sprite" parent="."]
+position = Vector2( 591, 249 )
+scale = Vector2( 0.36, 0.36 )
+texture = ExtResource( 5 )
+script = ExtResource( 1 )
+scene = "res://Juego.tscn"
+
+[node name="Sprite" type="Sprite" parent="jugar"]
+position = Vector2( -380.555, -2.77777 )
+texture = ExtResource( 6 )
+
+[node name="creditos" type="Sprite" parent="."]
+position = Vector2( 587, 348 )
+scale = Vector2( 0.438272, 0.438272 )
+texture = ExtResource( 7 )
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="creditos"]
+visible = false
+position = Vector2( -305.747, 2.28174 )
+scale = Vector2( 0.821408, 0.821408 )
+texture = ExtResource( 6 )
+
+[node name="salir" type="Sprite" parent="."]
+position = Vector2( 594.523, 449.375 )
+scale = Vector2( 0.295064, 0.295064 )
+texture = ExtResource( 4 )
+script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="salir"]
+visible = false
+position = Vector2( -469.467, 32.6201 )
+scale = Vector2( 1.00218, 1.00218 )
+texture = ExtResource( 6 )

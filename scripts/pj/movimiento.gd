@@ -8,8 +8,6 @@ var salta = false;
 export var animPath:NodePath;
 var anim;
 
-#onready var piso = $checkeaPiso;
-
 var actions = [
 	"mov_de",
 	"mov_iz",
@@ -21,7 +19,7 @@ var movx = 0;
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	anim = get_node(animPath);
-	pass # Replace with function body.
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -56,11 +54,11 @@ func _on_checkeaPiso_body_entered(body:Node):
 		print("piso");
 		estaEnElPiso = true;
 		pass
-	pass # Replace with function body.
+	pass
 
 func _on_checkeaPiso_body_exited(body:Node):
 	if (body.name == "piso"):
 		print("piso");
 		estaEnElPiso = false;
 		pass
-	pass # Replace with function body.
+	pass

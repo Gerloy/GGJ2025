@@ -21,17 +21,7 @@ export var spr_idle:Texture;
 export var spr_salta:Texture;
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	#var i = 0;
-	#for path in paths:
-	#	ani_caminar[i] = load(path);
-	#	i+=1
-	#paths.clear();
-	#i=null;
-
-	#Hacemos las texturas espejadas
-
 	pass 
 
 
@@ -52,10 +42,6 @@ func _process(delta):
 			time += delta;
 			if time>=rate:
 				id = 1 if id == 0 else 0;
-				#print(id);
-				#id += 1;
-				#if id >= ani_caminar.length:
-				#	id = 0;
 				time = 0;
 			scale.x = -3;
 			texture = ani_caminar[id];
@@ -64,9 +50,6 @@ func _process(delta):
 			time += delta;
 			if time>=rate:
 				id = 1 if id == 0 else 0;
-				#id +=1 ;
-				#if id >= ani_caminar.length:
-				#	id = 0;
 				time = 0;
 			scale.x = 3;
 			texture = ani_caminar[id];
