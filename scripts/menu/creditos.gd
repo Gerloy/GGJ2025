@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 
 
 # Declare member variables here. Examples:
@@ -12,13 +12,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
-func accion():
-	#==================================================================================================
-	#											    TODO                                              #
-	#==================================================================================================
-	#Esto va a ahacer aparecer un cartel y otro boton para volver pero lo agrego manana porque paja
-	#get_tree().change_scene(scene);
+func _process(_delta):
+	if Input.is_action_just_pressed("atk_esp"):
+		get_tree().change_scene('res://menu.tscn');
 	pass

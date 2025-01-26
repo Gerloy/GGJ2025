@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://prefabs/cinematica.tscn" type="PackedScene" id=1]
+[ext_resource path="res://musica/victoria.wav" type="AudioStream" id=2]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="cinematica" parent="." instance=ExtResource( 1 )]
+scene = "res://menu.tscn"
+ani = "ganar"
+
+[node name="amusica" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 2 )
+autoplay = true

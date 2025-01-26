@@ -35,6 +35,9 @@ func _on_hitbox_body_entered(body:Node):
 func muerto():
 	print("MUELTO");
 	$animaciones.animation = "muerto";
+	$Light2D.hide();
+	$Light2D2.hide();
+	
 	if $hitbox:
 		$hitbox.queue_free();
 	if $activador:

@@ -1,0 +1,169 @@
+[gd_scene load_steps=26 format=2]
+
+[ext_resource path="res://imgs/enemigos/murcielago/Peepers_death.png" type="Texture" id=1]
+[ext_resource path="res://imgs/enemigos/murcielago/Peepers.png" type="Texture" id=2]
+[ext_resource path="res://scripts/enemigos/murcielago.gd" type="Script" id=3]
+
+[sub_resource type="Curve2D" id=72]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 2517, 250, 149.502, 2.66968, -149.502, -2.66968, 2190, 303, 142.828, -4.00452, -142.828, 4.00452, 1712, 229, 108.353, -15.1191, -108.353, 15.1191, 1382, 284, 94.4941, 1.25992, -94.4941, -1.25992, 1094, 250, 0, 0, 0, 0, 904, 284 )
+}
+
+[sub_resource type="AtlasTexture" id=73]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 55, 45 )
+
+[sub_resource type="AtlasTexture" id=74]
+atlas = ExtResource( 1 )
+region = Rect2( 55, 0, 55, 45 )
+
+[sub_resource type="AtlasTexture" id=75]
+atlas = ExtResource( 1 )
+region = Rect2( 110, 0, 55, 45 )
+
+[sub_resource type="AtlasTexture" id=76]
+atlas = ExtResource( 1 )
+region = Rect2( 165, 0, 55, 45 )
+
+[sub_resource type="AtlasTexture" id=77]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=78]
+atlas = ExtResource( 2 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=79]
+atlas = ExtResource( 2 )
+region = Rect2( 128, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=80]
+atlas = ExtResource( 2 )
+region = Rect2( 192, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=65]
+atlas = ExtResource( 2 )
+region = Rect2( 256, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=66]
+atlas = ExtResource( 2 )
+region = Rect2( 320, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=82]
+atlas = ExtResource( 2 )
+region = Rect2( 256, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=83]
+atlas = ExtResource( 2 )
+region = Rect2( 192, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=84]
+atlas = ExtResource( 2 )
+region = Rect2( 128, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=85]
+atlas = ExtResource( 2 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="SpriteFrames" id=136]
+animations = [ {
+"frames": [ SubResource( 73 ), SubResource( 74 ), SubResource( 75 ), SubResource( 76 ) ],
+"loop": false,
+"name": "death",
+"speed": 7.0
+}, {
+"frames": [ SubResource( 77 ), SubResource( 78 ), SubResource( 79 ), SubResource( 80 ), SubResource( 65 ), SubResource( 66 ), SubResource( 82 ), SubResource( 83 ), SubResource( 84 ), SubResource( 85 ) ],
+"loop": true,
+"name": "fly",
+"speed": 9.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=137]
+extents = Vector2( 81.0034, 37.4939 )
+
+[sub_resource type="RectangleShape2D" id=138]
+extents = Vector2( 184.25, 24 )
+
+[sub_resource type="Animation" id=139]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("PathFollow2D:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=140]
+resource_name = "murcielago"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("PathFollow2D:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1621.98 ]
+}
+
+[sub_resource type="Gradient" id=143]
+colors = PoolColorArray( 1, 0, 0, 1, 0, 0, 0, 1 )
+
+[sub_resource type="GradientTexture2D" id=142]
+gradient = SubResource( 143 )
+fill = 1
+fill_from = Vector2( 0.520833, 0.470833 )
+fill_to = Vector2( 0.5125, 0.0416667 )
+
+[node name="Murcielago_ene" type="Path2D"]
+position = Vector2( -214, 19 )
+curve = SubResource( 72 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+position = Vector2( 2517, 250 )
+rotation = 2.99271
+rotate = false
+loop = false
+
+[node name="murcielago2_ene" type="Area2D" parent="PathFollow2D"]
+position = Vector2( 3349.36, 746.204 )
+rotation = -2.99267
+gravity_vec = Vector2( 1, 1 )
+gravity = 0.0
+script = ExtResource( 3 )
+
+[node name="animaciones" type="AnimatedSprite" parent="PathFollow2D/murcielago2_ene"]
+position = Vector2( 3417, 258 )
+scale = Vector2( 3, 3 )
+frames = SubResource( 136 )
+animation = "fly"
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/murcielago2_ene"]
+position = Vector2( 3418, 270.494 )
+shape = SubResource( 137 )
+
+[node name="activador" type="CollisionShape2D" parent="PathFollow2D/murcielago2_ene"]
+position = Vector2( 1660.01, 273.061 )
+shape = SubResource( 138 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PathFollow2D/murcielago2_ene"]
+root_node = NodePath("../../..")
+anims/RESET = SubResource( 139 )
+anims/murcielago = SubResource( 140 )
+
+[node name="Light2D" type="Light2D" parent="PathFollow2D/murcielago2_ene"]
+position = Vector2( 3415, 241.991 )
+texture = SubResource( 142 )
+texture_scale = 3.94
+
+[connection signal="body_entered" from="PathFollow2D/murcielago2_ene" to="PathFollow2D/murcielago2_ene" method="_on_Enemigo_body_entered"]

@@ -46,7 +46,7 @@ func _process(delta):
 			if time>=rate:
 				id = 1 if id == 0 else 0;
 				time = 0;
-			scale.x = -3;
+			scale.x = - abs(scale.x);
 			texture = ani_caminar[id];
 
 		pj.Estado_Movimiento.MOVDE:
@@ -54,7 +54,7 @@ func _process(delta):
 			if time>=rate:
 				id = 1 if id == 0 else 0;
 				time = 0;
-			scale.x = 3;
+			scale.x = abs(scale.x);
 			texture = ani_caminar[id];
 
 		_:

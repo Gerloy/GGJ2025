@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scripts/menu/iniciar.gd" type="Script" id=1]
 [ext_resource path="res://scripts/menu/creditos.gd" type="Script" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://imgs/menu/creditosboton.png" type="Texture" id=7]
 [ext_resource path="res://scripts/menu/manager.gd" type="Script" id=8]
 [ext_resource path="res://imgs/menu/fondo.jpg" type="Texture" id=9]
+[ext_resource path="res://musica/menu.wav" type="AudioStream" id=10]
+[ext_resource path="res://musica/moneda.wav" type="AudioStream" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 57.788, 20.8111 )
@@ -60,6 +62,15 @@ script = ExtResource( 3 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="salir/area_salir"]
 position = Vector2( -0.33783, 0.114899 )
 shape = SubResource( 2 )
+
+[node name="musica" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+autoplay = true
+
+[node name="monedita" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( 652, 463.909 )
+scale = Vector2( 1.6, 1.6 )
+stream = ExtResource( 11 )
 
 [connection signal="mouse_entered" from="jugar/area_jugar" to="." method="_on_area_jugar_mouse_entered"]
 [connection signal="mouse_exited" from="jugar/area_jugar" to="." method="_on_area_jugar_mouse_exited"]

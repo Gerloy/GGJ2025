@@ -24,7 +24,7 @@ export var pisoPath:NodePath;
 var mov;
 var ani;
 var espada;
-var gomera;
+#var gomera;
 var puede_atacar;
 
 
@@ -35,7 +35,7 @@ func _ready():
 	mov = $hitbox;
 	ani = $animaciones;
 	espada = $espada; 
-	gomera = $gomera;
+	#gomera = $gomera;
 	puede_atacar = true;
 	atk_time = 0;
 	mov.pisoPath=pisoPath;
@@ -72,6 +72,7 @@ func atacarEspada():
 	if estado_atk == Estado_Ataque.NO && puede_atacar:
 		atk_time = 0; 
 		estado_atk = Estado_Ataque.ESPADA;
+		$espada/espadita.play();
 		var lado;
 		if get_parent().get_global_mouse_position().x >= global_position.x:
 			lado = "de";
@@ -93,7 +94,7 @@ func atacarGomera():
 		estado_atk = Estado_Ataque.GOMERA;
 		#gomera.show();
 		#gomera.visible = true;
-		gomera.modulate.a = 1;
+		#gomera.modulate.a = 1;
 		puede_atacar = false;
 
 	pass

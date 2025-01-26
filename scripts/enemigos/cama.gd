@@ -5,10 +5,10 @@ func _ready():
 	pass # Replace with function body.
 
 func _on_Enemigo_body_entered(body:Node):
-	if body.name == "player":
-		$animaciones.play("muerte");
-		$activador.hide();
-		$Light2D.hide()
+	#if body.name == "player":
+		#$animaciones.play("muerte");
+		#$activador.hide();
+		#$Light2D.hide()
 	pass # Replace with function body.
 
 
@@ -18,3 +18,8 @@ func _on_hitbox_body_entered(body:Node):
 	pass # Replace with function body.
 
 
+
+func muerto():
+	$animaciones.play("muerte");
+	$activador.hide();
+	$Light2D.hide();

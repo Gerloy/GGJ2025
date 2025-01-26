@@ -36,6 +36,7 @@ func _process(delta):
 
 	if (Input.is_action_pressed(actions[2]) && estaEnElPiso):
 		salta = true;
+		$saltar.play();
 
 	if estaEnElPiso:
 		if movx == 0:
