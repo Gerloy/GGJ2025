@@ -1,49 +1,67 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scripts/menu/iniciar.gd" type="Script" id=1]
 [ext_resource path="res://scripts/menu/creditos.gd" type="Script" id=2]
 [ext_resource path="res://scripts/menu/salir.gd" type="Script" id=3]
-[ext_resource path="res://imgs/menu/salirboton.png" type="Texture" id=4]
-[ext_resource path="res://imgs/menu/inicioboton.png" type="Texture" id=5]
-[ext_resource path="res://imgs/menu/cabecitamichi.png" type="Texture" id=6]
+[ext_resource path="res://imgs/menu/bot_salir.png" type="Texture" id=4]
+[ext_resource path="res://imgs/menu/bot_jugar.png" type="Texture" id=5]
+[ext_resource path="res://imgs/menu/titulo.png" type="Texture" id=6]
 [ext_resource path="res://imgs/menu/creditosboton.png" type="Texture" id=7]
 [ext_resource path="res://scripts/menu/manager.gd" type="Script" id=8]
+[ext_resource path="res://imgs/menu/fondo.jpg" type="Texture" id=9]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 57.788, 20.8111 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 57.4164, 20.9969 )
 
 [node name="Menu" type="Node2D"]
 script = ExtResource( 8 )
 botones_path = [ NodePath("jugar"), NodePath("creditos"), NodePath("salir") ]
 
-[node name="jugar" type="Sprite" parent="."]
-position = Vector2( 591, 249 )
-scale = Vector2( 0.36, 0.36 )
-texture = ExtResource( 5 )
-script = ExtResource( 1 )
-scene = "res://Juego-fork.tscn"
+[node name="fondo" type="Sprite" parent="."]
+position = Vector2( 642, 362 )
+texture = ExtResource( 9 )
 
-[node name="Sprite" type="Sprite" parent="jugar"]
-position = Vector2( -380.555, -2.77777 )
+[node name="titulo" type="Sprite" parent="."]
+position = Vector2( 658.986, 228.335 )
+scale = Vector2( 0.981548, 0.981548 )
 texture = ExtResource( 6 )
 
+[node name="jugar" type="Sprite" parent="."]
+position = Vector2( 652, 463.909 )
+scale = Vector2( 1.6, 1.6 )
+texture = ExtResource( 5 )
+script = ExtResource( 1 )
+scene = "res://Inicio.tscn"
+
+[node name="area_jugar" type="Area2D" parent="jugar"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="jugar/area_jugar"]
+position = Vector2( -0.33783, -0.348511 )
+shape = SubResource( 1 )
+
 [node name="creditos" type="Sprite" parent="."]
+visible = false
 position = Vector2( 587, 348 )
 scale = Vector2( 0.438272, 0.438272 )
 texture = ExtResource( 7 )
 script = ExtResource( 2 )
 
-[node name="Sprite" type="Sprite" parent="creditos"]
-visible = false
-position = Vector2( -305.747, 2.28174 )
-scale = Vector2( 0.821408, 0.821408 )
-texture = ExtResource( 6 )
-
 [node name="salir" type="Sprite" parent="."]
-position = Vector2( 594.523, 449.375 )
-scale = Vector2( 0.295064, 0.295064 )
+position = Vector2( 652, 562.169 )
+scale = Vector2( 1.6, 1.6 )
 texture = ExtResource( 4 )
 script = ExtResource( 3 )
 
-[node name="Sprite" type="Sprite" parent="salir"]
-visible = false
-position = Vector2( -469.467, 32.6201 )
-scale = Vector2( 1.00218, 1.00218 )
-texture = ExtResource( 6 )
+[node name="area_salir" type="Area2D" parent="salir"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="salir/area_salir"]
+position = Vector2( -0.33783, 0.114899 )
+shape = SubResource( 2 )
+
+[connection signal="mouse_entered" from="jugar/area_jugar" to="." method="_on_area_jugar_mouse_entered"]
+[connection signal="mouse_exited" from="jugar/area_jugar" to="." method="_on_area_jugar_mouse_exited"]
+[connection signal="mouse_entered" from="salir/area_salir" to="." method="_on_area_salir_mouse_entered"]
+[connection signal="mouse_exited" from="salir/area_salir" to="." method="_on_area_salir_mouse_exited"]

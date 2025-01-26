@@ -3,32 +3,40 @@ extends Node
 export(Array,NodePath) var botones_path;
 var selec = 0;
 
+var puede_jugar = false;
+var puede_salir = false;
+
 func _ready():
 	pass
 
 
 func _process(delta):
 
-	get_node(botones_path[selec]).get_node("Sprite").hide();
-
-	if Input.is_action_just_pressed("arriba"):
-		selec -= 1;
-	if Input.is_action_just_pressed("abajo"):
-		selec += 1;
-
-	if selec < 0:
-		selec = botones_path.size()-1;
-	elif selec >= botones_path.size():
-		print("Cambio");
-		selec = 0;
-
-	get_node(botones_path[selec]).get_node("Sprite").show();
-
-	if Input.is_action_just_pressed("accion"):
-		get_node(botones_path[selec]).accion();
+	if Input.is_action_just_pressed("atk_esp"):
+		if puede_jugar:
+			$jugar.accion();
+		if puede_salir:
+			$salir.accion();
 
 	if Input.is_action_just_pressed("salir"):
 		get_tree().quit();
 
 
 	pass
+
+func _on_area_jugar_mouse_entered():
+	puede_jugar = true;
+	pass
+
+func _on_area_jugar_mouse_exited():
+	puede_jugar = false;
+	pass
+
+func _on_area_salir_mouse_entered():
+	puede_salir = true;
+	pass
+
+func _on_area_salir_mouse_exited():
+	puede_salir = false;
+	pass
+

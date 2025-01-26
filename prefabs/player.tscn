@@ -1,0 +1,124 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://scripts/pj/pj_general.gd" type="Script" id=1]
+[ext_resource path="res://scripts/pj/movimiento.gd" type="Script" id=2]
+[ext_resource path="res://scripts/pj/animaciones.gd" type="Script" id=3]
+[ext_resource path="res://imgs/pj_prueba/der1.png" type="Texture" id=4]
+[ext_resource path="res://icon.png" type="Texture" id=5]
+[ext_resource path="res://imgs/pj_prueba/der2.png" type="Texture" id=6]
+[ext_resource path="res://scripts/pj/gomera.gd" type="Script" id=7]
+[ext_resource path="res://scripts/pj/espada_ataque.gd" type="Script" id=8]
+
+[sub_resource type="PhysicsMaterial" id=170]
+rough = true
+absorbent = true
+
+[sub_resource type="Gradient" id=42]
+offsets = PoolRealArray( 0, 0.893855, 1 )
+colors = PoolColorArray( 0.975891, 0.691406, 1, 1, 0.0443436, 0.0443436, 0.0443436, 1, 0, 0, 0, 1 )
+
+[sub_resource type="GradientTexture2D" id=49]
+gradient = SubResource( 42 )
+fill = 1
+fill_from = Vector2( 0.516667, 0.479167 )
+fill_to = Vector2( 0.05, 0.2375 )
+
+[sub_resource type="CapsuleShape2D" id=171]
+radius = 18.0
+height = 12.0
+
+[sub_resource type="RectangleShape2D" id=172]
+extents = Vector2( 20, 22.5 )
+
+[sub_resource type="RectangleShape2D" id=173]
+extents = Vector2( 20, 3 )
+
+[sub_resource type="RectangleShape2D" id=174]
+extents = Vector2( 13, 22 )
+
+[node name="player" type="RigidBody2D"]
+position = Vector2( 630, 585 )
+mode = 2
+mass = 8.16327
+physics_material_override = SubResource( 170 )
+gravity_scale = 16.0
+script = ExtResource( 1 )
+atk_offset = 0.5
+
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( 22, 24 )
+scale = Vector2( 5.77533, 3.22461 )
+texture = SubResource( 49 )
+color = Color( 0.513726, 0.580392, 0.752941, 1 )
+
+[node name="animaciones" type="Sprite" parent="."]
+position = Vector2( 24, 26 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 4 )
+script = ExtResource( 3 )
+rate = 0.25
+ani_caminar = [ ExtResource( 6 ), ExtResource( 4 ) ]
+spr_idle = ExtResource( 4 )
+spr_salta = ExtResource( 6 )
+
+[node name="hitbox" type="CollisionShape2D" parent="."]
+position = Vector2( 21, 26 )
+shape = SubResource( 171 )
+script = ExtResource( 2 )
+vel = 25000.0
+fuerza_salto = 300.0
+pisoPath = NodePath("../../piso")
+
+[node name="hitbox_para_enemigos" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox_para_enemigos"]
+position = Vector2( 21, 23.5 )
+shape = SubResource( 172 )
+
+[node name="checkeaPiso" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="checkeaPiso"]
+position = Vector2( 21, 49 )
+shape = SubResource( 173 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 0, -212 )
+current = true
+limit_top = 0
+limit_bottom = 0
+
+[node name="espada" type="Area2D" parent="."]
+visible = false
+script = ExtResource( 8 )
+atk_time = 0.5
+
+[node name="hitbox_de" type="CollisionShape2D" parent="espada"]
+visible = false
+position = Vector2( 51, 26 )
+shape = SubResource( 174 )
+disabled = true
+
+[node name="Sprite" type="Sprite" parent="espada/hitbox_de"]
+position = Vector2( 1, -1.5 )
+scale = Vector2( 0.375, 0.703125 )
+texture = ExtResource( 5 )
+
+[node name="hitbox_iz" type="CollisionShape2D" parent="espada"]
+visible = false
+position = Vector2( -7, 26 )
+shape = SubResource( 174 )
+disabled = true
+
+[node name="Sprite" type="Sprite" parent="espada/hitbox_iz"]
+scale = Vector2( 0.375, 0.703 )
+texture = ExtResource( 5 )
+
+[node name="gomera" type="Sprite" parent="."]
+position = Vector2( 35, 30 )
+scale = Vector2( 0.6875, 0.3125 )
+texture = ExtResource( 5 )
+script = ExtResource( 7 )
+
+[connection signal="body_entered" from="checkeaPiso" to="hitbox" method="_on_checkeaPiso_body_entered"]
+[connection signal="body_exited" from="checkeaPiso" to="hitbox" method="_on_checkeaPiso_body_exited"]
+[connection signal="area_entered" from="espada" to="espada" method="_on_espada_area_entered"]

@@ -1,0 +1,45 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://imgs/cinematicas/inicio/inicio_0.png" type="Texture" id=1]
+[ext_resource path="res://imgs/cinematicas/inicio/inicio_1.png" type="Texture" id=2]
+[ext_resource path="res://imgs/cinematicas/inicio/inicio_2.png" type="Texture" id=3]
+[ext_resource path="res://imgs/cinematicas/inicio/inicio_3.png" type="Texture" id=4]
+[ext_resource path="res://scripts/cinematicas/inicio.gd" type="Script" id=5]
+[ext_resource path="res://imgs/cinematicas/derrota/derrota_3.png" type="Texture" id=6]
+[ext_resource path="res://imgs/cinematicas/derrota/derrota_0.png" type="Texture" id=7]
+[ext_resource path="res://imgs/cinematicas/derrota/derrota_4.png" type="Texture" id=8]
+[ext_resource path="res://imgs/cinematicas/derrota/derrota_2.png" type="Texture" id=9]
+[ext_resource path="res://imgs/cinematicas/derrota/derrota_1.png" type="Texture" id=10]
+[ext_resource path="res://imgs/cinematicas/inicio/inicio_4.png" type="Texture" id=11]
+[ext_resource path="res://imgs/cinematicas/inicio/inicio_5.png" type="Texture" id=12]
+[ext_resource path="res://imgs/cinematicas/inicio/inicio_6.png" type="Texture" id=13]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 7 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 6 ), ExtResource( 8 ) ],
+"loop": false,
+"name": "derrota",
+"speed": 2.0
+}, {
+"frames": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
+"loop": false,
+"name": "inicio",
+"speed": 2.0
+}, {
+"frames": [  ],
+"loop": false,
+"name": "victoria",
+"speed": 2.0
+} ]
+
+[node name="cinematica" type="AnimatedSprite"]
+position = Vector2( 638.483, 353.5 )
+scale = Vector2( 2.56593, 2.56593 )
+frames = SubResource( 1 )
+animation = "inicio"
+speed_scale = 0.25
+playing = true
+script = ExtResource( 5 )
+scene = "res://Juego PRUEBAS.tscn"
+
+[connection signal="animation_finished" from="." to="." method="_on_cinematica_animation_finished"]

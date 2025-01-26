@@ -1,26 +1,56 @@
 extends RigidBody2D
 
-enum Estado{
+enum Estado_Movimiento{
 	IDLE,
 	MOVIZ,
 	MOVDE,
 	SALTA
 }
-var estado;
+var estado_mov;
+
+enum Estado_Ataque{
+	NO,
+	ESPADA,
+	GOMERA,
+}
+var estado_atk;
+export var atk_offset:float;
+var atk_time;
+
+#export var piso:
+
+export var pisoPath:NodePath;
 
 var mov;
 var ani;
+var espada;
+var gomera;
+var puede_atacar;
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	estado_atk = Estado_Ataque.NO;
+	estado_mov = Estado_Movimiento.IDLE;
 	mov = $hitbox;
-	ani = $Sprite;
+	ani = $animaciones;
+	espada = $espada; 
+	gomera = $gomera;
+	puede_atacar = true;
+	atk_time = 0;
+	mov.pisoPath=pisoPath;
 	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+
+	#puede_atacar = false;
+	if estado_atk == Estado_Ataque.NO:
+		atk_time += delta; 
+		if atk_time >= delta:
+			puede_atacar = true;
+
 	pass
 
 func _integrate_forces(state):
@@ -30,10 +60,45 @@ func _integrate_forces(state):
 	pass
 
 
-func cambiarEstado(e):
-	estado = e;
+func cambiarEstadoMovimiento(e):
+	estado_mov = e;
+	pass
+
+func cambiarEstadoAtk(e):
+	estado_atk = e;
+	pass
+
+func atacarEspada():
+	if estado_atk == Estado_Ataque.NO && puede_atacar:
+		atk_time = 0; 
+		estado_atk = Estado_Ataque.ESPADA;
+		var lado;
+		if get_parent().get_global_mouse_position().x >= global_position.x:
+			lado = "de";
+		else:
+			lado = "iz";
+
+		espada.lado = lado;
+		var name = "hitbox_" + lado;
+		espada.get_node(name).show();
+		espada.get_node(name).disabled = false;
+		espada.show();
+		puede_atacar = false;
+
+	pass
+
+func atacarGomera():
+	if estado_atk == Estado_Ataque.NO && puede_atacar:
+		atk_time = 0; 
+		estado_atk = Estado_Ataque.GOMERA;
+		#gomera.show();
+		#gomera.visible = true;
+		gomera.modulate.a = 1;
+		puede_atacar = false;
+
 	pass
 
 ##TODO llenar la funcion esta cuando sepamos como es el tema de la vida
 func restarVida():
+	print("Cago el pibe");
 	pass

@@ -1,0 +1,744 @@
+[gd_scene load_steps=115 format=2]
+
+[ext_resource path="res://prefabs/bala.tscn" type="PackedScene" id=1]
+[ext_resource path="res://prefabs/player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scripts/enemigos/enemigo-rosa.gd" type="Script" id=3]
+[ext_resource path="res://scripts/burbuja/burbuja.gd" type="Script" id=4]
+[ext_resource path="res://scripts/enemigos/hitbox.gd" type="Script" id=5]
+[ext_resource path="res://imgs/parallax/DesertLayer3.png" type="Texture" id=7]
+[ext_resource path="res://imgs/burbuja/cora_full.png" type="Texture" id=8]
+[ext_resource path="res://imgs/enemigos/Poppy/Poppy.png" type="Texture" id=9]
+[ext_resource path="res://imgs/parallax/DesertLayer2.png" type="Texture" id=11]
+[ext_resource path="res://imgs/parallax/DesertLayer1.png" type="Texture" id=12]
+[ext_resource path="res://imgs/tileset/new_tileset.tres" type="TileSet" id=14]
+[ext_resource path="res://scripts/enemigos/murcielago.gd" type="Script" id=15]
+[ext_resource path="res://imgs/enemigos/murcielago/Peepers_death.png" type="Texture" id=16]
+[ext_resource path="res://imgs/enemigos/murcielago/Peepers.png" type="Texture" id=17]
+[ext_resource path="res://imgs/enemigos/cama/undabed.png" type="Texture" id=18]
+[ext_resource path="res://scripts/enemigos/cama.gd" type="Script" id=19]
+[ext_resource path="res://scripts/enemigos/blep.gd" type="Script" id=20]
+[ext_resource path="res://imgs/enemigos/blep/blep.png" type="Texture" id=21]
+[ext_resource path="res://imgs/enemigos/blep/blep_death.png" type="Texture" id=22]
+
+[sub_resource type="AtlasTexture" id=120]
+atlas = ExtResource( 18 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=121]
+atlas = ExtResource( 18 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=122]
+atlas = ExtResource( 18 )
+region = Rect2( 128, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=123]
+atlas = ExtResource( 18 )
+region = Rect2( 192, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=124]
+atlas = ExtResource( 18 )
+region = Rect2( 256, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=125]
+atlas = ExtResource( 18 )
+region = Rect2( 320, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=126]
+atlas = ExtResource( 18 )
+region = Rect2( 256, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=127]
+atlas = ExtResource( 18 )
+region = Rect2( 192, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=128]
+atlas = ExtResource( 18 )
+region = Rect2( 128, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=129]
+atlas = ExtResource( 18 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=130]
+atlas = ExtResource( 18 )
+region = Rect2( 320, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=131]
+atlas = ExtResource( 18 )
+region = Rect2( 256, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=132]
+atlas = ExtResource( 18 )
+region = Rect2( 192, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=133]
+atlas = ExtResource( 18 )
+region = Rect2( 128, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=134]
+atlas = ExtResource( 18 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=135]
+atlas = ExtResource( 18 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="SpriteFrames" id=143]
+animations = [ {
+"frames": [ SubResource( 120 ), SubResource( 121 ), SubResource( 122 ), SubResource( 123 ), SubResource( 124 ), SubResource( 125 ), SubResource( 126 ), SubResource( 127 ), SubResource( 128 ), SubResource( 129 ) ],
+"loop": true,
+"name": "idle",
+"speed": 6.0
+}, {
+"frames": [ SubResource( 130 ), SubResource( 131 ), SubResource( 132 ), SubResource( 133 ), SubResource( 134 ), SubResource( 135 ) ],
+"loop": false,
+"name": "muerte",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=144]
+extents = Vector2( 79.625, 24 )
+
+[sub_resource type="RectangleShape2D" id=145]
+extents = Vector2( 56, 68.5 )
+
+[sub_resource type="Gradient" id=146]
+offsets = PoolRealArray( 0.027933, 1 )
+colors = PoolColorArray( 1, 0, 0, 1, 0, 0, 0, 1 )
+
+[sub_resource type="GradientTexture2D" id=147]
+gradient = SubResource( 146 )
+fill = 1
+fill_from = Vector2( 0.508333, 0.466667 )
+fill_to = Vector2( 0.541667, 0.075 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 9 )
+region = Rect2( 0, 0, 17, 81 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 9 )
+region = Rect2( 17, 0, 17, 81 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 9 )
+region = Rect2( 34, 0, 17, 81 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 9 )
+region = Rect2( 51, 0, 17, 81 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 9 )
+region = Rect2( 68, 0, 17, 81 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 9 )
+region = Rect2( 85, 0, 17, 81 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 9 )
+region = Rect2( 102, 0, 17, 81 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 9 )
+region = Rect2( 119, 0, 17, 81 )
+
+[sub_resource type="AtlasTexture" id=175]
+atlas = ExtResource( 9 )
+region = Rect2( 119, 0, 17, 81 )
+
+[sub_resource type="AtlasTexture" id=176]
+atlas = ExtResource( 9 )
+region = Rect2( 102, 0, 17, 81 )
+
+[sub_resource type="AtlasTexture" id=177]
+atlas = ExtResource( 9 )
+region = Rect2( 85, 0, 17, 81 )
+
+[sub_resource type="AtlasTexture" id=178]
+atlas = ExtResource( 9 )
+region = Rect2( 68, 0, 17, 81 )
+
+[sub_resource type="AtlasTexture" id=179]
+atlas = ExtResource( 9 )
+region = Rect2( 51, 0, 17, 81 )
+
+[sub_resource type="AtlasTexture" id=180]
+atlas = ExtResource( 9 )
+region = Rect2( 34, 0, 17, 81 )
+
+[sub_resource type="AtlasTexture" id=181]
+atlas = ExtResource( 9 )
+region = Rect2( 17, 0, 17, 81 )
+
+[sub_resource type="AtlasTexture" id=182]
+atlas = ExtResource( 9 )
+region = Rect2( 0, 0, 17, 81 )
+
+[sub_resource type="SpriteFrames" id=50]
+animations = [ {
+"frames": [ SubResource( 15 ), SubResource( 6 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ) ],
+"loop": false,
+"name": "activo",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 15 ) ],
+"loop": false,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 175 ), SubResource( 176 ), SubResource( 177 ), SubResource( 178 ), SubResource( 179 ), SubResource( 180 ), SubResource( 181 ), SubResource( 182 ) ],
+"loop": false,
+"name": "muerto",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=51]
+extents = Vector2( 184.25, 24 )
+
+[sub_resource type="RectangleShape2D" id=52]
+extents = Vector2( 20.5, 31.5 )
+
+[sub_resource type="RectangleShape2D" id=53]
+extents = Vector2( 22, 75 )
+
+[sub_resource type="RectangleShape2D" id=54]
+extents = Vector2( 33, 113 )
+
+[sub_resource type="RectangleShape2D" id=55]
+extents = Vector2( 26.5, 151.5 )
+
+[sub_resource type="RectangleShape2D" id=56]
+extents = Vector2( 29, 223.5 )
+
+[sub_resource type="Gradient" id=88]
+colors = PoolColorArray( 1, 0, 0, 1, 0, 0, 0, 1 )
+
+[sub_resource type="GradientTexture2D" id=57]
+gradient = SubResource( 88 )
+fill = 1
+fill_from = Vector2( 0.5, 0.4875 )
+fill_to = Vector2( 0.620833, 0.0625 )
+
+[sub_resource type="Curve2D" id=58]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 18, 363, -250.95, -1.33484, 250.95, 1.33484, 608, 262, -201.561, -33.371, 201.561, 33.371, 1005, 350, -178.869, 12.0136, 178.869, -12.0136, 1410, 284, -121.47, -26.6968, 121.47, 26.6968, 1735, 369, -68.0768, 36.0407, 68.0768, -36.0407, 1939, 292, -94.7736, -13.3484, 94.7736, 13.3484, 2247, 337, -105.452, 13.3484, 105.452, -13.3484, 2509, 282, 0, 0, 0, 0, 2707, 333 )
+}
+
+[sub_resource type="RectangleShape2D" id=59]
+extents = Vector2( 69.3333, 53.3333 )
+
+[sub_resource type="Gradient" id=64]
+offsets = PoolRealArray( 0, 0.0391061, 1 )
+colors = PoolColorArray( 0.790222, 0.799915, 0.945313, 1, 0.965541, 0.764374, 0.988281, 1, 0, 0, 0, 1 )
+
+[sub_resource type="GradientTexture2D" id=60]
+gradient = SubResource( 64 )
+fill = 1
+fill_from = Vector2( 0.508333, 0.479167 )
+fill_to = Vector2( 0.2375, 0.0791667 )
+
+[sub_resource type="Animation" id=61]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=62]
+resource_name = "burbuja"
+length = 60.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 2618.58 ]
+}
+
+[sub_resource type="Curve2D" id=72]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 2517, 250, 149.502, 2.66968, -149.502, -2.66968, 2190, 303, 142.828, -4.00452, -142.828, 4.00452, 1696, 213, 108.353, -15.1191, -108.353, 15.1191, 1382, 284, 94.4941, 1.25992, -94.4941, -1.25992, 1094, 250, 0, 0, 0, 0, 904, 284 )
+}
+
+[sub_resource type="AtlasTexture" id=73]
+atlas = ExtResource( 16 )
+region = Rect2( 0, 0, 55, 45 )
+
+[sub_resource type="AtlasTexture" id=74]
+atlas = ExtResource( 16 )
+region = Rect2( 55, 0, 55, 45 )
+
+[sub_resource type="AtlasTexture" id=75]
+atlas = ExtResource( 16 )
+region = Rect2( 110, 0, 55, 45 )
+
+[sub_resource type="AtlasTexture" id=76]
+atlas = ExtResource( 16 )
+region = Rect2( 165, 0, 55, 45 )
+
+[sub_resource type="AtlasTexture" id=77]
+atlas = ExtResource( 17 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=78]
+atlas = ExtResource( 17 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=79]
+atlas = ExtResource( 17 )
+region = Rect2( 128, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=80]
+atlas = ExtResource( 17 )
+region = Rect2( 192, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=65]
+atlas = ExtResource( 17 )
+region = Rect2( 256, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=66]
+atlas = ExtResource( 17 )
+region = Rect2( 320, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=82]
+atlas = ExtResource( 17 )
+region = Rect2( 256, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=83]
+atlas = ExtResource( 17 )
+region = Rect2( 192, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=84]
+atlas = ExtResource( 17 )
+region = Rect2( 128, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=85]
+atlas = ExtResource( 17 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="SpriteFrames" id=136]
+animations = [ {
+"frames": [ SubResource( 73 ), SubResource( 74 ), SubResource( 75 ), SubResource( 76 ) ],
+"loop": false,
+"name": "death",
+"speed": 7.0
+}, {
+"frames": [ SubResource( 77 ), SubResource( 78 ), SubResource( 79 ), SubResource( 80 ), SubResource( 65 ), SubResource( 66 ), SubResource( 82 ), SubResource( 83 ), SubResource( 84 ), SubResource( 85 ) ],
+"loop": true,
+"name": "fly",
+"speed": 9.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=137]
+extents = Vector2( 80, 45 )
+
+[sub_resource type="RectangleShape2D" id=138]
+extents = Vector2( 184.25, 24 )
+
+[sub_resource type="Animation" id=139]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("PathFollow2D:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=140]
+resource_name = "murcielago"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("PathFollow2D:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1621.98 ]
+}
+
+[sub_resource type="Gradient" id=141]
+colors = PoolColorArray( 1, 0, 0, 1, 0, 0, 0, 1 )
+
+[sub_resource type="GradientTexture2D" id=142]
+gradient = SubResource( 141 )
+fill = 1
+fill_from = Vector2( 0.520833, 0.470833 )
+fill_to = Vector2( 0.5125, 0.0416667 )
+
+[sub_resource type="AtlasTexture" id=156]
+atlas = ExtResource( 22 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=157]
+atlas = ExtResource( 22 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=158]
+atlas = ExtResource( 22 )
+region = Rect2( 128, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=159]
+atlas = ExtResource( 22 )
+region = Rect2( 192, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=160]
+atlas = ExtResource( 22 )
+region = Rect2( 256, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=161]
+atlas = ExtResource( 21 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=162]
+atlas = ExtResource( 21 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=163]
+atlas = ExtResource( 21 )
+region = Rect2( 128, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=148]
+atlas = ExtResource( 21 )
+region = Rect2( 192, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=149]
+atlas = ExtResource( 21 )
+region = Rect2( 256, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=150]
+atlas = ExtResource( 21 )
+region = Rect2( 320, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=151]
+atlas = ExtResource( 21 )
+region = Rect2( 256, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=152]
+atlas = ExtResource( 21 )
+region = Rect2( 192, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=153]
+atlas = ExtResource( 21 )
+region = Rect2( 128, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=154]
+atlas = ExtResource( 21 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="SpriteFrames" id=164]
+animations = [ {
+"frames": [ SubResource( 156 ), SubResource( 157 ), SubResource( 158 ), SubResource( 159 ), SubResource( 160 ) ],
+"loop": false,
+"name": "death",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 161 ), SubResource( 162 ), SubResource( 163 ), SubResource( 148 ), SubResource( 149 ), SubResource( 150 ), SubResource( 151 ), SubResource( 152 ), SubResource( 153 ), SubResource( 154 ) ],
+"loop": true,
+"name": "idle",
+"speed": 7.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=165]
+extents = Vector2( 79.625, 24 )
+
+[sub_resource type="RectangleShape2D" id=166]
+extents = Vector2( 56, 68.5 )
+
+[sub_resource type="Gradient" id=155]
+colors = PoolColorArray( 1, 0, 0, 1, 0, 0, 0, 1 )
+
+[sub_resource type="GradientTexture2D" id=167]
+gradient = SubResource( 155 )
+fill = 1
+fill_from = Vector2( 0.508333, 0.466667 )
+fill_to = Vector2( 0.541667, 0.075 )
+
+[sub_resource type="CanvasItemMaterial" id=87]
+
+[node name="root" type="Node2D"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.4, 1 )
+motion_mirroring = Vector2( 1280, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+texture = ExtResource( 7 )
+centered = false
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.6, 0.6 )
+motion_mirroring = Vector2( 1280, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer2"]
+texture = ExtResource( 11 )
+centered = false
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.7, 0.7 )
+motion_mirroring = Vector2( 1280, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer3"]
+texture = ExtResource( 12 )
+centered = false
+
+[node name="CanvasModulate" type="CanvasModulate" parent="ParallaxBackground"]
+position = Vector2( 1.92785, 0 )
+rotation = 0.713479
+scale = Vector2( 0.934388, 0.961345 )
+color = Color( 0.129412, 0.0352941, 0.203922, 0.478431 )
+
+[node name="piso" type="TileMap" parent="."]
+scale = Vector2( 4, 4 )
+tile_set = ExtResource( 14 )
+cell_size = Vector2( 32, 32 )
+cell_quadrant_size = 32
+show_collision = true
+format = 1
+tile_data = PoolIntArray( 262144, 1, 0, 262145, 1, 0, 262146, 1, 0, 262147, 1, 0, 262148, 1, 0, 262149, 1, 0, 262150, 1, 0, 262151, 1, 0, 262152, 1, 0, 262153, 1, 0, 262154, 1, 0, 262155, 1, 0, 262156, 1, 0, 262157, 1, 0, 262158, 1, 0, 262159, 1, 0, 262160, 1, 0, 262161, 1, 0, 262162, 1, 0, 262163, 1, 0, 262164, 1, 0, 262165, 1, 0, 262166, 1, 0, 262167, 1, 0, 262168, 1, 0, 262169, 1, 0, 262170, 1, 0, 262171, 1, 0, 262172, 1, 0, 262173, 1, 0, 262174, 1, 0, 262175, 1, 0, 262176, 1, 0, 262177, 1, 0, 262178, 1, 0, 262179, 1, 0, 262180, 1, 0, 262181, 1, 0, 262182, 1, 0, 262183, 1, 0, 262184, 1, 0, 262185, 1, 0, 262186, 1, 0, 262187, 1, 0, 262188, 1, 0, 262189, 1, 0, 262190, 1, 0, 2621445, 10, 0, 2621447, 10, 0, 2621449, 10, 0, 2621451, 10, 0, 2621453, 10, 0 )
+
+[node name="DETALLES" type="TileMap" parent="."]
+scale = Vector2( 4, 4 )
+tile_set = ExtResource( 14 )
+cell_size = Vector2( 16, 16 )
+cell_quadrant_size = 32
+format = 1
+tile_data = PoolIntArray( 131082, 0, 0, 524290, 3, 0, 524301, 3, 0, 524309, 4, 0, 589824, 6, 0, 589836, 5, 0, 2621445, 10, 0, 2621447, 10, 0, 2621449, 10, 0, 2621451, 10, 0, 2621453, 10, 0 )
+
+[node name="Cama_ene" type="Area2D" parent="."]
+position = Vector2( 1181, 17 )
+script = ExtResource( 19 )
+
+[node name="animaciones" type="AnimatedSprite" parent="Cama_ene"]
+position = Vector2( 1383, 562 )
+scale = Vector2( 2.3, 2.3 )
+frames = SubResource( 143 )
+animation = "idle"
+playing = true
+
+[node name="activador" type="CollisionShape2D" parent="Cama_ene"]
+position = Vector2( 1231, 580 )
+shape = SubResource( 144 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cama_ene"]
+position = Vector2( 1384, 564.5 )
+shape = SubResource( 145 )
+
+[node name="Light2D" type="Light2D" parent="Cama_ene"]
+position = Vector2( 1377, 581 )
+scale = Vector2( 2.8125, 2.40625 )
+texture = SubResource( 147 )
+texture_scale = 1.3
+
+[node name="Poppy_ene" type="Area2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="animaciones" type="AnimatedSprite" parent="Poppy_ene"]
+position = Vector2( 1195, 411 )
+scale = Vector2( 6, 6 )
+frames = SubResource( 50 )
+animation = "activo"
+playing = true
+
+[node name="activador" type="CollisionShape2D" parent="Poppy_ene"]
+position = Vector2( 974, 598 )
+shape = SubResource( 51 )
+
+[node name="hitbox" type="Area2D" parent="Poppy_ene"]
+script = ExtResource( 5 )
+
+[node name="frame1" type="CollisionShape2D" parent="Poppy_ene/hitbox"]
+position = Vector2( 1192.5, 621.5 )
+shape = SubResource( 52 )
+disabled = true
+
+[node name="frame2" type="CollisionShape2D" parent="Poppy_ene/hitbox"]
+position = Vector2( 1191, 565 )
+shape = SubResource( 53 )
+disabled = true
+
+[node name="frame3" type="CollisionShape2D" parent="Poppy_ene/hitbox"]
+position = Vector2( 1198, 524 )
+shape = SubResource( 54 )
+disabled = true
+
+[node name="frame4" type="CollisionShape2D" parent="Poppy_ene/hitbox"]
+position = Vector2( 1202.5, 484.5 )
+shape = SubResource( 55 )
+disabled = true
+
+[node name="frame5" type="CollisionShape2D" parent="Poppy_ene/hitbox"]
+position = Vector2( 1202, 416.5 )
+shape = SubResource( 56 )
+
+[node name="Light2D" type="Light2D" parent="Poppy_ene"]
+position = Vector2( 1201, 199 )
+texture = SubResource( 57 )
+
+[node name="Light2D2" type="Light2D" parent="Poppy_ene"]
+position = Vector2( 1203, 391 )
+scale = Vector2( 1, 9.21875 )
+texture = SubResource( 57 )
+
+[node name="DETALLES2" type="TileMap" parent="."]
+scale = Vector2( 4, 4 )
+tile_set = ExtResource( 14 )
+cell_size = Vector2( 16, 16 )
+cell_quadrant_size = 32
+format = 1
+tile_data = PoolIntArray( 131082, 0, 0, 589826, 9, 0, 589829, 4, 0, 589834, 9, 0, 589841, 3, 0, 589849, 9, 0, 2621445, 10, 0, 2621447, 10, 0, 2621449, 10, 0, 2621451, 10, 0, 2621453, 10, 0 )
+
+[node name="Corazon" type="Path2D" parent="."]
+position = Vector2( 1.92785, 0 )
+scale = Vector2( 0.892897, 1 )
+curve = SubResource( 58 )
+script = ExtResource( 4 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Corazon"]
+position = Vector2( 18, 363 )
+rotation = -0.288505
+
+[node name="burbuja" type="Area2D" parent="Corazon/PathFollow2D"]
+position = Vector2( -3.8147e-06, 3.05176e-05 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Corazon/PathFollow2D/burbuja"]
+position = Vector2( 0, -4 )
+scale = Vector2( 1.5, 1.5 )
+shape = SubResource( 59 )
+one_way_collision_margin = 0.0
+
+[node name="Sprite" type="Sprite" parent="Corazon/PathFollow2D/burbuja"]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 8 )
+
+[node name="Light2D" type="Light2D" parent="Corazon/PathFollow2D/burbuja"]
+position = Vector2( -4.72473, -24.6326 )
+scale = Vector2( 22.5225, 15.3915 )
+texture = SubResource( 60 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Corazon"]
+root_node = NodePath("../PathFollow2D")
+anims/RESET = SubResource( 61 )
+anims/burbuja = SubResource( 62 )
+
+[node name="Murcielago" type="Path2D" parent="."]
+position = Vector2( -214, 19 )
+curve = SubResource( 72 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Murcielago"]
+position = Vector2( 2517, 250 )
+rotation = 2.99271
+rotate = false
+
+[node name="murcielago2_ene" type="Area2D" parent="Murcielago/PathFollow2D"]
+position = Vector2( 3349.36, 746.204 )
+rotation = -2.99267
+gravity_vec = Vector2( 1, 1 )
+gravity = 0.0
+script = ExtResource( 15 )
+
+[node name="animaciones" type="AnimatedSprite" parent="Murcielago/PathFollow2D/murcielago2_ene"]
+position = Vector2( 3417, 258 )
+scale = Vector2( 3, 3 )
+frames = SubResource( 136 )
+animation = "fly"
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Murcielago/PathFollow2D/murcielago2_ene"]
+position = Vector2( 3417, 188 )
+shape = SubResource( 137 )
+
+[node name="activador" type="CollisionShape2D" parent="Murcielago/PathFollow2D/murcielago2_ene"]
+position = Vector2( 2035.01, 570.05 )
+shape = SubResource( 138 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Murcielago/PathFollow2D/murcielago2_ene"]
+root_node = NodePath("../../..")
+anims/RESET = SubResource( 139 )
+anims/murcielago = SubResource( 140 )
+
+[node name="Light2D" type="Light2D" parent="Murcielago/PathFollow2D/murcielago2_ene"]
+position = Vector2( 3415, 251 )
+texture = SubResource( 142 )
+texture_scale = 3.94
+
+[node name="Blep_ene" type="Area2D" parent="."]
+position = Vector2( 623, 26 )
+script = ExtResource( 20 )
+
+[node name="animaciones" type="AnimatedSprite" parent="Blep_ene"]
+position = Vector2( 1383, 562 )
+scale = Vector2( 2.3, 2.3 )
+frames = SubResource( 164 )
+animation = "idle"
+playing = true
+
+[node name="activador" type="CollisionShape2D" parent="Blep_ene"]
+position = Vector2( 1226, 578 )
+shape = SubResource( 165 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blep_ene"]
+position = Vector2( 1384, 564.5 )
+shape = SubResource( 166 )
+
+[node name="Light2D" type="Light2D" parent="Blep_ene"]
+position = Vector2( 1381, 575 )
+scale = Vector2( 1.67187, 1.84375 )
+texture = SubResource( 167 )
+texture_scale = 2.26
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+position = Vector2( 1.92785, 0 )
+rotation = 0.713479
+scale = Vector2( 0.934388, 0.961345 )
+color = Color( 0, 0, 0, 1 )
+
+[node name="particulas ambiente" type="CPUParticles2D" parent="."]
+material = SubResource( 87 )
+position = Vector2( 5905, 310 )
+scale = Vector2( 6, 6 )
+amount = 120
+emission_shape = 2
+emission_rect_extents = Vector2( 1000, 50 )
+direction = Vector2( 0, 1 )
+spread = 0.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 45.0
+
+[node name="player" parent="." instance=ExtResource( 2 )]
+pisoPath = NodePath("../piso")
+
+[node name="bala" parent="." instance=ExtResource( 1 )]
+
+[connection signal="body_entered" from="Cama_ene" to="Cama_ene" method="_on_Enemigo_body_entered"]
+[connection signal="body_entered" from="Poppy_ene" to="Poppy_ene" method="_on_Enemigo_body_entered"]
+[connection signal="area_entered" from="Poppy_ene/hitbox" to="Corazon" method="_on_hitbox_area_entered"]
+[connection signal="body_entered" from="Murcielago/PathFollow2D/murcielago2_ene" to="Murcielago/PathFollow2D/murcielago2_ene" method="_on_Enemigo_body_entered"]
+[connection signal="body_entered" from="Blep_ene" to="Blep_ene" method="_on_Enemigo_body_entered"]
