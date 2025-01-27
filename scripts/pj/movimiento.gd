@@ -27,7 +27,7 @@ var movx = 0;
 func _ready():
 	pj = get_parent();
 	anim = get_parent().get_node("animaciones");
-	piso = get_node(pisoPath);
+	#piso = get_node(pisoPath);
 	pass
 
 func _process(delta):
@@ -36,7 +36,7 @@ func _process(delta):
 
 	if (Input.is_action_pressed(actions[2]) && estaEnElPiso):
 		salta = true;
-		$saltar.play();
+		get_parent().get_node('saltar').play();
 
 	if estaEnElPiso:
 		if movx == 0:

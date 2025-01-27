@@ -12,6 +12,7 @@ func _ready():
 
 func _process(delta):
 
+	print(puede_jugar);
 	if Input.is_action_just_pressed("atk_esp"):
 		if puede_jugar:
 			$jugar.accion();
@@ -21,11 +22,11 @@ func _process(delta):
 	if Input.is_action_just_pressed("salir"):
 		get_tree().quit();
 
-
 	pass
 
 func _on_area_jugar_mouse_entered():
 	puede_jugar = true;
+	$monedita.play();
 	pass
 
 func _on_area_jugar_mouse_exited():
@@ -34,6 +35,7 @@ func _on_area_jugar_mouse_exited():
 
 func _on_area_salir_mouse_entered():
 	puede_salir = true;
+	$monedita.play();
 	pass
 
 func _on_area_salir_mouse_exited():

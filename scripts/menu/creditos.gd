@@ -13,6 +13,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	if Input.is_action_just_pressed("atk_esp"):
-		get_tree().change_scene('res://menu.tscn');
+	#if Input.is_action_just_pressed("atk_esp"):
+	#	get_tree().change_scene('res://JuegoPRUEBAS.tscn');
 	pass

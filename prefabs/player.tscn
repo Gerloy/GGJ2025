@@ -1,10 +1,9 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://scripts/pj/pj_general.gd" type="Script" id=1]
 [ext_resource path="res://scripts/pj/movimiento.gd" type="Script" id=2]
 [ext_resource path="res://scripts/pj/animaciones.gd" type="Script" id=3]
 [ext_resource path="res://musica/jump.wav" type="AudioStream" id=4]
-[ext_resource path="res://icon.png" type="Texture" id=5]
 [ext_resource path="res://imgs/gaby/correr3.png" type="Texture" id=6]
 [ext_resource path="res://musica/espada.wav" type="AudioStream" id=7]
 [ext_resource path="res://scripts/pj/espada_ataque.gd" type="Script" id=8]
@@ -12,6 +11,7 @@
 [ext_resource path="res://imgs/gaby/correr0.png" type="Texture" id=10]
 [ext_resource path="res://imgs/gaby/correr2.png" type="Texture" id=11]
 [ext_resource path="res://imgs/gaby/correr1.png" type="Texture" id=12]
+[ext_resource path="res://imgs/espada/Gaby Espada 3 1.png" type="Texture" id=13]
 
 [sub_resource type="PhysicsMaterial" id=170]
 rough = true
@@ -40,25 +40,44 @@ extents = Vector2( 20, 3 )
 [sub_resource type="RectangleShape2D" id=174]
 extents = Vector2( 13, 22 )
 
+[sub_resource type="AtlasTexture" id=175]
+atlas = ExtResource( 13 )
+region = Rect2( 0, 0, 254, 254 )
+
+[sub_resource type="AtlasTexture" id=176]
+atlas = ExtResource( 13 )
+region = Rect2( 254, 0, 254, 254 )
+
+[sub_resource type="AtlasTexture" id=177]
+atlas = ExtResource( 13 )
+region = Rect2( 508, 0, 254, 254 )
+
+[sub_resource type="SpriteFrames" id=178]
+animations = [ {
+"frames": [ SubResource( 175 ), SubResource( 176 ), SubResource( 177 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
 [node name="player" type="RigidBody2D"]
 position = Vector2( 630, 585 )
-scale = Vector2( 4, 4 )
+scale = Vector2( 5, 5 )
 mode = 2
-mass = 8.16327
+mass = 0.220408
 physics_material_override = SubResource( 170 )
 gravity_scale = 16.0
 script = ExtResource( 1 )
 atk_offset = 0.5
 
 [node name="Light2D" type="Light2D" parent="."]
-position = Vector2( 22, 24 )
-scale = Vector2( 5.77533, 3.22461 )
+position = Vector2( 24, 43.8 )
+scale = Vector2( 3.23051, 1.92495 )
 texture = SubResource( 49 )
 color = Color( 0.513726, 0.580392, 0.752941, 1 )
 
 [node name="animaciones" type="Sprite" parent="."]
 position = Vector2( 20, 25 )
-scale = Vector2( 0.484849, 0.484849 )
 texture = ExtResource( 10 )
 script = ExtResource( 3 )
 rate = 0.25
@@ -92,7 +111,6 @@ limit_top = 0
 limit_bottom = 0
 
 [node name="espada" type="Area2D" parent="."]
-visible = false
 script = ExtResource( 8 )
 atk_time = 0.5
 
@@ -102,10 +120,10 @@ position = Vector2( 51, 26 )
 shape = SubResource( 174 )
 disabled = true
 
-[node name="Sprite" type="Sprite" parent="espada/hitbox_de"]
-position = Vector2( 1, -1.5 )
-scale = Vector2( 0.375, 0.703125 )
-texture = ExtResource( 5 )
+[node name="Sprite" type="AnimatedSprite" parent="espada/hitbox_de"]
+position = Vector2( 12.2, 14.8 )
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 178 )
 
 [node name="hitbox_iz" type="CollisionShape2D" parent="espada"]
 visible = false
@@ -113,9 +131,11 @@ position = Vector2( -7, 26 )
 shape = SubResource( 174 )
 disabled = true
 
-[node name="Sprite" type="Sprite" parent="espada/hitbox_iz"]
-scale = Vector2( 0.375, 0.703 )
-texture = ExtResource( 5 )
+[node name="Sprite" type="AnimatedSprite" parent="espada/hitbox_iz"]
+position = Vector2( -6.8, 17 )
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 178 )
+flip_h = true
 
 [node name="espadita" type="AudioStreamPlayer2D" parent="espada"]
 stream = ExtResource( 7 )

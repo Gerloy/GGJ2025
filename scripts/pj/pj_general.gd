@@ -20,6 +20,7 @@ var atk_time;
 #export var piso:
 
 export var pisoPath:NodePath;
+export var drimitrescu:String;
 
 var mov;
 var ani;
@@ -103,3 +104,36 @@ func atacarGomera():
 func restarVida():
 	print("Cago el pibe");
 	pass
+
+#DIMITRESCU
+
+func _on_AREA_area_entered(area):
+	if area.get_parent().name == "player":
+		print("Entro")
+		_muerte(false)
+
+func _on_AREA_area_exited(area):
+	if area.get_parent().name == "player":
+		print("Salio")
+		_muerte(true)
+
+func _muerte(estado: bool):
+	if estado:
+		print("Muerte activada");
+		$dimitrescu.show();
+		$dimitrescu/Light2D.show();
+		$dimitrescu/AnimatedSprite.play("atacando");
+		_iniciar_timer(10);
+	else:
+		print("Muerte desactivada");
+		$dimitrescu/AnimatedSprite.play("idle");
+		$dimitrescu/Light2D.hide();
+		$Timer.stop();
+		
+func _iniciar_timer(segundos: float):
+	$Timer.wait_time = segundos
+	$Timer.start()
+
+func _on_Timer_timeout():
+	get_tree().change_scene(drimitrescu);
+	print("drimitescu te atrapo") 

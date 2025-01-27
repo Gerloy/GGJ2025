@@ -1,12 +1,10 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scripts/menu/iniciar.gd" type="Script" id=1]
-[ext_resource path="res://scripts/menu/creditos.gd" type="Script" id=2]
 [ext_resource path="res://scripts/menu/salir.gd" type="Script" id=3]
 [ext_resource path="res://imgs/menu/bot_salir.png" type="Texture" id=4]
 [ext_resource path="res://imgs/menu/bot_jugar.png" type="Texture" id=5]
 [ext_resource path="res://imgs/menu/titulo.png" type="Texture" id=6]
-[ext_resource path="res://imgs/menu/creditosboton.png" type="Texture" id=7]
 [ext_resource path="res://scripts/menu/manager.gd" type="Script" id=8]
 [ext_resource path="res://imgs/menu/fondo.jpg" type="Texture" id=9]
 [ext_resource path="res://musica/menu.wav" type="AudioStream" id=10]
@@ -20,7 +18,7 @@ extents = Vector2( 57.4164, 20.9969 )
 
 [node name="Menu" type="Node2D"]
 script = ExtResource( 8 )
-botones_path = [ NodePath("jugar"), NodePath("creditos"), NodePath("salir") ]
+botones_path = [ NodePath("jugar"), NodePath(""), NodePath("salir") ]
 
 [node name="fondo" type="Sprite" parent="."]
 position = Vector2( 642, 362 )
@@ -44,13 +42,6 @@ scene = "res://Inicio.tscn"
 position = Vector2( -0.33783, -0.348511 )
 shape = SubResource( 1 )
 
-[node name="creditos" type="Sprite" parent="."]
-visible = false
-position = Vector2( 587, 348 )
-scale = Vector2( 0.438272, 0.438272 )
-texture = ExtResource( 7 )
-script = ExtResource( 2 )
-
 [node name="salir" type="Sprite" parent="."]
 position = Vector2( 652, 562.169 )
 scale = Vector2( 1.6, 1.6 )
@@ -71,6 +62,7 @@ autoplay = true
 position = Vector2( 652, 463.909 )
 scale = Vector2( 1.6, 1.6 )
 stream = ExtResource( 11 )
+volume_db = 2.0
 
 [connection signal="mouse_entered" from="jugar/area_jugar" to="." method="_on_area_jugar_mouse_entered"]
 [connection signal="mouse_exited" from="jugar/area_jugar" to="." method="_on_area_jugar_mouse_exited"]

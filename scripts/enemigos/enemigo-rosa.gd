@@ -10,8 +10,7 @@ var pega;
 func _ready():
 	vulnerable = false;
 	pega = true;
-	pass # Replace with function body.
-
+	pass # Replace with function body
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

@@ -6,8 +6,8 @@
 [node name="Node2D" type="Node2D"]
 
 [node name="cinematica" parent="." instance=ExtResource( 1 )]
-scene = "res://menu.tscn"
-ani = "ganar"
+scene = "res://creditos_ganar.tscn"
+ani = "victoria"
 
 [node name="amusica" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 2 )

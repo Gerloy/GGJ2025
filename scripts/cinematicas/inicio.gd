@@ -9,7 +9,7 @@ func _ready():
 	animation = ani;
 	pass
 
-func _process(_delta):		
+func _process(_delta):
 	pass
 
 

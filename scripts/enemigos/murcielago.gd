@@ -17,7 +17,7 @@ func _on_Enemigo_body_entered(body:Node):
 func _muerte_murcielago():
 	$animaciones.modulate.a8 = 20
 	$animaciones.play("death");
-	$CollisionShape2D.queue_free()
+	$CollisionShape2D.queue_free();
 	$Light2D.hide()
 
 func muerto():

@@ -1,0 +1,308 @@
+[gd_scene load_steps=39 format=2]
+
+[ext_resource path="res://scripts/pj/movimiento.gd" type="Script" id=1]
+[ext_resource path="res://imgs/parallax/DesertLayer2.png" type="Texture" id=2]
+[ext_resource path="res://icon.png" type="Texture" id=3]
+[ext_resource path="res://imgs/parallax/DesertLayer1.png" type="Texture" id=4]
+[ext_resource path="res://imgs/parallax/DesertLayer3.png" type="Texture" id=5]
+[ext_resource path="res://imgs/enemigos/Poppy/Poppy.png" type="Texture" id=6]
+[ext_resource path="res://scripts/enemigos/hitbox.gd" type="Script" id=7]
+[ext_resource path="res://scripts/enemigos/enemigo-rosa.gd" type="Script" id=8]
+[ext_resource path="res://scripts/pj/pj_general.gd" type="Script" id=9]
+[ext_resource path="res://scripts/pj/espada_ataque.gd" type="Script" id=10]
+[ext_resource path="res://scripts/pj/animaciones.gd" type="Script" id=11]
+[ext_resource path="res://imgs/pj_prueba/der1.png" type="Texture" id=12]
+[ext_resource path="res://imgs/pj_prueba/der2.png" type="Texture" id=13]
+[ext_resource path="res://scripts/pj/bala.gd" type="Script" id=14]
+[ext_resource path="res://scripts/pj/gomera.gd" type="Script" id=15]
+[ext_resource path="res://imgs/tileset/new_tileset.tres" type="TileSet" id=16]
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 0, 17, 81 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 6 )
+region = Rect2( 17, 0, 17, 81 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 6 )
+region = Rect2( 34, 0, 17, 81 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 6 )
+region = Rect2( 51, 0, 17, 81 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 6 )
+region = Rect2( 68, 0, 17, 81 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 6 )
+region = Rect2( 85, 0, 17, 81 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 6 )
+region = Rect2( 102, 0, 17, 81 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 6 )
+region = Rect2( 119, 0, 17, 81 )
+
+[sub_resource type="SpriteFrames" id=13]
+animations = [ {
+"frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
+"loop": false,
+"name": "activo",
+"speed": 2.0
+}, {
+"frames": [ SubResource( 5 ) ],
+"loop": false,
+"name": "idle",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=14]
+extents = Vector2( 184.25, 24 )
+
+[sub_resource type="RectangleShape2D" id=19]
+extents = Vector2( 20.5, 31.5 )
+
+[sub_resource type="RectangleShape2D" id=21]
+extents = Vector2( 22, 75 )
+
+[sub_resource type="RectangleShape2D" id=22]
+extents = Vector2( 33, 113 )
+
+[sub_resource type="RectangleShape2D" id=23]
+extents = Vector2( 26.5, 151.5 )
+
+[sub_resource type="RectangleShape2D" id=24]
+extents = Vector2( 29, 223.5 )
+
+[sub_resource type="PhysicsMaterial" id=26]
+rough = true
+absorbent = true
+
+[sub_resource type="CircleShape2D" id=27]
+radius = 23.4919
+
+[sub_resource type="PhysicsMaterial" id=15]
+rough = true
+absorbent = true
+
+[sub_resource type="CapsuleShape2D" id=18]
+radius = 18.0
+height = 12.0
+
+[sub_resource type="RectangleShape2D" id=20]
+extents = Vector2( 20, 22.5 )
+
+[sub_resource type="RectangleShape2D" id=17]
+extents = Vector2( 20, 3 )
+
+[sub_resource type="RectangleShape2D" id=25]
+extents = Vector2( 13, 22 )
+
+[node name="Node2D" type="Node2D"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.4, 1 )
+motion_mirroring = Vector2( 1280, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+texture = ExtResource( 5 )
+centered = false
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.6, 0.6 )
+motion_mirroring = Vector2( 1280, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer2"]
+texture = ExtResource( 2 )
+centered = false
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.7, 0.7 )
+motion_mirroring = Vector2( 1280, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer3"]
+texture = ExtResource( 4 )
+centered = false
+
+[node name="piso" type="TileMap" parent="."]
+scale = Vector2( 4, 4 )
+tile_set = ExtResource( 16 )
+cell_size = Vector2( 32, 32 )
+cell_quadrant_size = 32
+show_collision = true
+format = 1
+tile_data = PoolIntArray( 262144, 1, 0, 262145, 1, 0, 262146, 1, 0, 262147, 1, 0, 262148, 1, 0, 262149, 1, 0, 262150, 1, 0, 262151, 1, 0, 262152, 1, 0, 262153, 1, 0, 262154, 1, 0, 262155, 1, 0, 262156, 1, 0, 262157, 1, 0, 262158, 1, 0, 262159, 1, 0, 262160, 1, 0, 262161, 1, 0, 262162, 1, 0, 262163, 1, 0, 2621445, 10, 0, 2621447, 10, 0, 2621449, 10, 0, 2621451, 10, 0, 2621453, 10, 0 )
+
+[node name="DETALLES" type="TileMap" parent="."]
+scale = Vector2( 4, 4 )
+tile_set = ExtResource( 16 )
+cell_size = Vector2( 16, 16 )
+cell_quadrant_size = 32
+format = 1
+tile_data = PoolIntArray( 131082, 0, 0, 524290, 3, 0, 524301, 3, 0, 524309, 4, 0, 589824, 6, 0, 589836, 5, 0, 2621445, 10, 0, 2621447, 10, 0, 2621449, 10, 0, 2621451, 10, 0, 2621453, 10, 0 )
+
+[node name="Poppy_ene" type="Area2D" parent="."]
+script = ExtResource( 8 )
+
+[node name="animaciones" type="AnimatedSprite" parent="Poppy_ene"]
+position = Vector2( 1195, 411 )
+scale = Vector2( 6, 6 )
+frames = SubResource( 13 )
+animation = "idle"
+playing = true
+
+[node name="activador" type="CollisionShape2D" parent="Poppy_ene"]
+position = Vector2( 974, 598 )
+shape = SubResource( 14 )
+
+[node name="hitbox" type="Area2D" parent="Poppy_ene"]
+script = ExtResource( 7 )
+
+[node name="frame1" type="CollisionShape2D" parent="Poppy_ene/hitbox"]
+position = Vector2( 1192.5, 621.5 )
+shape = SubResource( 19 )
+
+[node name="frame2" type="CollisionShape2D" parent="Poppy_ene/hitbox"]
+visible = false
+position = Vector2( 1191, 565 )
+shape = SubResource( 21 )
+
+[node name="frame3" type="CollisionShape2D" parent="Poppy_ene/hitbox"]
+visible = false
+position = Vector2( 1198, 524 )
+shape = SubResource( 22 )
+
+[node name="frame4" type="CollisionShape2D" parent="Poppy_ene/hitbox"]
+visible = false
+position = Vector2( 1202.5, 484.5 )
+shape = SubResource( 23 )
+
+[node name="frame5" type="CollisionShape2D" parent="Poppy_ene/hitbox"]
+visible = false
+position = Vector2( 1202, 416.5 )
+shape = SubResource( 24 )
+
+[node name="DETALLES2" type="TileMap" parent="."]
+scale = Vector2( 4, 4 )
+tile_set = ExtResource( 16 )
+cell_size = Vector2( 16, 16 )
+cell_quadrant_size = 32
+format = 1
+tile_data = PoolIntArray( 131082, 0, 0, 589826, 9, 0, 589829, 4, 0, 589834, 9, 0, 589849, 9, 0, 2621445, 10, 0, 2621447, 10, 0, 2621449, 10, 0, 2621451, 10, 0, 2621453, 10, 0 )
+
+[node name="bala" type="RigidBody2D" parent="."]
+position = Vector2( 688, 593 )
+scale = Vector2( 0.6875, 0.3125 )
+collision_layer = 2
+collision_mask = 2
+physics_material_override = SubResource( 26 )
+gravity_scale = 40.0
+sleeping = true
+script = ExtResource( 14 )
+fuerza = 100.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bala"]
+scale = Vector2( 0.5, 1 )
+shape = SubResource( 27 )
+
+[node name="Sprite" type="Sprite" parent="bala"]
+position = Vector2( 6.10352e-05, 0 )
+scale = Vector2( 0.284, 0.5 )
+texture = ExtResource( 3 )
+
+[node name="Area2D" type="Area2D" parent="bala"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bala/Area2D"]
+scale = Vector2( 0.55, 1.1 )
+shape = SubResource( 27 )
+
+[node name="player" type="RigidBody2D" parent="."]
+position = Vector2( 630, 585 )
+mode = 2
+mass = 8.16327
+physics_material_override = SubResource( 15 )
+gravity_scale = 16.0
+script = ExtResource( 9 )
+atk_offset = 0.5
+
+[node name="animaciones" type="Sprite" parent="player"]
+position = Vector2( 24, 26 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 12 )
+script = ExtResource( 11 )
+rate = 0.25
+ani_caminar = [ ExtResource( 13 ), ExtResource( 12 ) ]
+spr_idle = ExtResource( 12 )
+spr_salta = ExtResource( 13 )
+
+[node name="hitbox" type="CollisionShape2D" parent="player"]
+position = Vector2( 21, 26 )
+shape = SubResource( 18 )
+script = ExtResource( 1 )
+vel = 25000.0
+fuerza_salto = 300.0
+
+[node name="hitbox_para_enemigos" type="Area2D" parent="player"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player/hitbox_para_enemigos"]
+position = Vector2( 21, 23.5 )
+shape = SubResource( 20 )
+
+[node name="checkeaPiso" type="Area2D" parent="player"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player/checkeaPiso"]
+position = Vector2( 21, 49 )
+shape = SubResource( 17 )
+
+[node name="Camera2D" type="Camera2D" parent="player"]
+position = Vector2( 0, -212 )
+current = true
+limit_top = 0
+limit_bottom = 0
+
+[node name="espada" type="Area2D" parent="player"]
+visible = false
+script = ExtResource( 10 )
+atk_time = 0.5
+
+[node name="hitbox_de" type="CollisionShape2D" parent="player/espada"]
+visible = false
+position = Vector2( 51, 26 )
+shape = SubResource( 25 )
+disabled = true
+
+[node name="Sprite" type="Sprite" parent="player/espada/hitbox_de"]
+position = Vector2( 1, -1.5 )
+scale = Vector2( 0.375, 0.703125 )
+texture = ExtResource( 3 )
+
+[node name="hitbox_iz" type="CollisionShape2D" parent="player/espada"]
+visible = false
+position = Vector2( -7, 26 )
+shape = SubResource( 25 )
+disabled = true
+
+[node name="Sprite" type="Sprite" parent="player/espada/hitbox_iz"]
+scale = Vector2( 0.375, 0.703 )
+texture = ExtResource( 3 )
+
+[node name="gomera" type="Sprite" parent="player"]
+position = Vector2( 35, 30 )
+scale = Vector2( 0.6875, 0.3125 )
+texture = ExtResource( 3 )
+script = ExtResource( 15 )
+
+[connection signal="body_entered" from="Poppy_ene" to="Poppy_ene" method="_on_Enemigo_body_entered"]
+[connection signal="body_entered" from="Poppy_ene/hitbox" to="Poppy_ene" method="_on_hitbox_body_entered"]
+[connection signal="area_entered" from="bala/Area2D" to="bala" method="_on_Area2D_area_entered"]
+[connection signal="body_entered" from="player/checkeaPiso" to="player/hitbox" method="_on_checkeaPiso_body_entered"]
+[connection signal="body_exited" from="player/checkeaPiso" to="player/hitbox" method="_on_checkeaPiso_body_exited"]
+[connection signal="area_entered" from="player/espada" to="player/espada" method="_on_espada_area_entered"]

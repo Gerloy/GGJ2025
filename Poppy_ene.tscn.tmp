@@ -1,0 +1,166 @@
+[gd_scene load_steps=29 format=2]
+
+[ext_resource path="res://imgs/enemigos/Poppy/Poppy.png" type="Texture" id=1]
+[ext_resource path="res://scripts/enemigos/hitbox.gd" type="Script" id=2]
+[ext_resource path="res://scripts/enemigos/enemigo-rosa.gd" type="Script" id=3]
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 17, 81 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 1 )
+region = Rect2( 17, 0, 17, 81 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 1 )
+region = Rect2( 34, 0, 17, 81 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 1 )
+region = Rect2( 51, 0, 17, 81 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 1 )
+region = Rect2( 68, 0, 17, 81 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 1 )
+region = Rect2( 85, 0, 17, 81 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 1 )
+region = Rect2( 102, 0, 17, 81 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 1 )
+region = Rect2( 119, 0, 17, 81 )
+
+[sub_resource type="AtlasTexture" id=175]
+atlas = ExtResource( 1 )
+region = Rect2( 119, 0, 17, 81 )
+
+[sub_resource type="AtlasTexture" id=176]
+atlas = ExtResource( 1 )
+region = Rect2( 102, 0, 17, 81 )
+
+[sub_resource type="AtlasTexture" id=177]
+atlas = ExtResource( 1 )
+region = Rect2( 85, 0, 17, 81 )
+
+[sub_resource type="AtlasTexture" id=178]
+atlas = ExtResource( 1 )
+region = Rect2( 68, 0, 17, 81 )
+
+[sub_resource type="AtlasTexture" id=179]
+atlas = ExtResource( 1 )
+region = Rect2( 51, 0, 17, 81 )
+
+[sub_resource type="AtlasTexture" id=180]
+atlas = ExtResource( 1 )
+region = Rect2( 34, 0, 17, 81 )
+
+[sub_resource type="AtlasTexture" id=181]
+atlas = ExtResource( 1 )
+region = Rect2( 17, 0, 17, 81 )
+
+[sub_resource type="AtlasTexture" id=182]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 17, 81 )
+
+[sub_resource type="SpriteFrames" id=50]
+animations = [ {
+"frames": [ SubResource( 15 ), SubResource( 6 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ) ],
+"loop": false,
+"name": "activo",
+"speed": 7.0
+}, {
+"frames": [ SubResource( 15 ) ],
+"loop": false,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 175 ), SubResource( 176 ), SubResource( 177 ), SubResource( 178 ), SubResource( 179 ), SubResource( 180 ), SubResource( 181 ), SubResource( 182 ) ],
+"loop": false,
+"name": "muerto",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=51]
+extents = Vector2( 184.25, 24 )
+
+[sub_resource type="RectangleShape2D" id=52]
+extents = Vector2( 20.5, 31.5 )
+
+[sub_resource type="RectangleShape2D" id=53]
+extents = Vector2( 22, 75 )
+
+[sub_resource type="RectangleShape2D" id=54]
+extents = Vector2( 33, 113 )
+
+[sub_resource type="RectangleShape2D" id=55]
+extents = Vector2( 26.5, 151.5 )
+
+[sub_resource type="RectangleShape2D" id=56]
+extents = Vector2( 29, 223.5 )
+
+[sub_resource type="Gradient" id=88]
+colors = PoolColorArray( 1, 0, 0, 1, 0, 0, 0, 1 )
+
+[sub_resource type="GradientTexture2D" id=57]
+gradient = SubResource( 88 )
+fill = 1
+fill_from = Vector2( 0.5, 0.4875 )
+fill_to = Vector2( 0.620833, 0.0625 )
+
+[node name="Poppy_ene" type="Area2D"]
+script = ExtResource( 3 )
+
+[node name="animaciones" type="AnimatedSprite" parent="."]
+position = Vector2( 1195, 411 )
+scale = Vector2( 6, 6 )
+frames = SubResource( 50 )
+animation = "activo"
+playing = true
+
+[node name="activador" type="CollisionShape2D" parent="."]
+position = Vector2( 974, 598 )
+shape = SubResource( 51 )
+
+[node name="hitbox" type="Area2D" parent="."]
+script = ExtResource( 2 )
+
+[node name="frame1" type="CollisionShape2D" parent="hitbox"]
+position = Vector2( 1192.5, 621.5 )
+shape = SubResource( 52 )
+disabled = true
+
+[node name="frame2" type="CollisionShape2D" parent="hitbox"]
+position = Vector2( 1191, 565 )
+shape = SubResource( 53 )
+disabled = true
+
+[node name="frame3" type="CollisionShape2D" parent="hitbox"]
+position = Vector2( 1198, 524 )
+shape = SubResource( 54 )
+disabled = true
+
+[node name="frame4" type="CollisionShape2D" parent="hitbox"]
+position = Vector2( 1202.5, 484.5 )
+shape = SubResource( 55 )
+disabled = true
+
+[node name="frame5" type="CollisionShape2D" parent="hitbox"]
+position = Vector2( 1202, 416.5 )
+shape = SubResource( 56 )
+
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( 1201, 199 )
+texture = SubResource( 57 )
+
+[node name="Light2D2" type="Light2D" parent="."]
+position = Vector2( 1203, 391 )
+scale = Vector2( 1, 9.21875 )
+texture = SubResource( 57 )
+
+[connection signal="body_entered" from="." to="." method="_on_Enemigo_body_entered"]
